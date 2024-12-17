@@ -9,6 +9,8 @@ public class Player_Controller : Controller
     // bool is a true or false statement
     public bool isMouseRotation;
 
+    public float lives;
+
     // Update is called once per frame
     protected override void Update()
     {
@@ -92,6 +94,5 @@ public class Player_Controller : Controller
 
     }
 
-
-
+    
 }

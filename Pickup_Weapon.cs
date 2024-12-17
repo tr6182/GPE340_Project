@@ -8,21 +8,30 @@ public class Pickup_Weapon : PickUp
 
     public override void OnTriggerEnter(Collider other)
     {
+        // Early exit if weapon is not assigned
+        if (weaponToEquip == null)
+        {
+            Debug.LogWarning("No weapon assigned to this pickup.");
+            return;
+        }
+
         // Check if the object that triggered the collision is a Pawn
         Pawn thePawn = other.GetComponent<Pawn>();
-        if (thePawn != null && weaponToEquip != null)
+        if (thePawn != null)
         {
             // Equip the weapon
             thePawn.EquipWeapon(weaponToEquip);
-            // debug log to say which weapon has been equiped
-            Debug.Log("Weapon Equipped: " + weaponToEquip.name); 
 
-            // Destroys the pickup after equipping the weapon
-            Destroy(gameObject); 
+            // Debug log to confirm the weapon has been equipped
+            Debug.Log("Weapon Equipped: " + weaponToEquip.name);
+
+            // Destroy the pickup after equipping the weapon
+            Destroy(gameObject);
         }
-        else if (weaponToEquip == null)
+        else
         {
-            Debug.LogWarning("No weapon assigned to this pickup.");
+            // Log a message if the collision wasn't with a Pawn
+            Debug.LogWarning("The object that triggered the pickup is not a Pawn: " + other.gameObject.name);
         }
 
         // Call the base class method to retain any functionality implemented there

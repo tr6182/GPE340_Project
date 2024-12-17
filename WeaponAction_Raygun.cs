@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// This script is a child of another child class
 public class WeaponAction_Raygun : WeaponAction
 {
     // How far an enemy has to be to take damage
@@ -22,6 +21,10 @@ public class WeaponAction_Raygun : WeaponAction
 
     // LineRenderer to visualize the ray (optional)
     private LineRenderer lineRenderer;
+
+    public float accuracy;
+
+    public float maxAccuracyRotation;
 
     // Awake is called when the script is initialized
     public override void Awake()
@@ -58,21 +61,43 @@ public class WeaponAction_Raygun : WeaponAction
         }
     }
 
+    public virtual float GetAccuracyRotationDegrees(float accuracyModifier = 1)
+    {
+        // Return a random percentage between min and max AccuracyRoation 
+        // Get a random number between 0 and 1 ( a percentage )
+        float accuracyDeltaPercentage = Random.value;
+
+        // Find that percentage between the negative (to the Left) and positive (to the right) values of this rotation.
+        float accuracyDeltaDegrees = Mathf.Lerp(-maxAccuracyRotation, maxAccuracyRotation, accuracyDeltaPercentage);
+        accuracyDeltaDegrees *= accuracyModifier;
+
+        // Return that value
+        return accuracyDeltaDegrees;
+    }
+
     // Shoot method to handle raycast and damage
     public void Shoot()
     {
+        // Store the direction we shoot without the accuracy system
+        Vector3 newFireDirection = firepoint.forward;
+
+        // Get the rotation change based on our accuracy
+        Quaternion accuracyFireDelta = Quaternion.Euler(0, GetAccuracyRotationDegrees(), 0);
+
+        // Multiply by the rotation from inaccuracy to set new rotation value
+        newFireDirection = accuracyFireDelta * newFireDirection;
+
         // Variable to hold our raycast hit data
-        // raycast requires a mesh collider
         RaycastHit hit;
 
         // Check if it is time to fire the weapon
         if (Time.time >= lastShotTime + secondsPerShot)
         {
             // Visualize the ray (for debugging or feedback in-game)
-            Debug.DrawRay(firepoint.position, firepoint.forward * fireDistance, Color.red);
+            Debug.DrawRay(firepoint.position, newFireDirection * fireDistance, Color.red);
 
             // Perform the Raycast
-            if (Physics.Raycast(firepoint.position, firepoint.forward, out hit, fireDistance))
+            if (Physics.Raycast(firepoint.position, newFireDirection, out hit, fireDistance))
             {
                 Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
 
@@ -83,8 +108,14 @@ public class WeaponAction_Raygun : WeaponAction
                     // Tell it to take damage!
                     otherHealth.TakeDamage(weapon.damageDone);
                 }
-            }
 
+                // Optional: You can add visuals here if needed (such as drawing a line)
+                if (lineRenderer != null)
+                {
+                    lineRenderer.SetPosition(0, firepoint.position);
+                    lineRenderer.SetPosition(1, hit.point);
+                }
+            }
             // Save the time when the shot was fired
             lastShotTime = Time.time;
         }
@@ -102,3 +133,4 @@ public class WeaponAction_Raygun : WeaponAction
         isAutofireActive = false;
     }
 }
+

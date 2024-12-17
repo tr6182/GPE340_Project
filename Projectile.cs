@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
 
     public void Update()
     {
-        // Move forward at our movespeed (per second, not per framedraw)
+        // Move forward at our movespeed 
         rb.velocity = transform.forward * moveSpeed;
     }
 

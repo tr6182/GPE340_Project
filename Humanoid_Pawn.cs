@@ -9,7 +9,7 @@ public class Humanoid_Pawn : Pawn
     private Animator animator;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         // Get the animator attached to this object
         animator = GetComponent<Animator>();

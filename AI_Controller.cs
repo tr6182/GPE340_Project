@@ -10,6 +10,9 @@ public class AI_Controller : Controller
     public float stoppingDistance;
     public Transform targetTransform;
     private Vector3 desiredVelocity = Vector3.zero;
+    public float shootingDistance;
+    public float shootingAngle;       
+   
 
     // Start is called before the first frame update
     protected override void Start()
@@ -80,5 +83,46 @@ public class AI_Controller : Controller
 
         // allows the pawn to look at target by rotating position
         pawn.RotateToLookAt(targetTransform.position);
+
+        // If we are within distance
+        if (Vector3.Distance(targetTransform.position, pawn.transform.position) <= shootingDistance)
+        {
+            // And we are within the angle
+            Vector3 vectorToTarget = targetTransform.position - pawn.transform.position;
+            if (Vector3.Angle(pawn.transform.forward, vectorToTarget) <= shootingAngle)
+            {
+                // They should pull the trigger
+                pawn.weapon.OnPrimaryAttackBegin.Invoke();
+            }
+        }
+        else
+        {
+            // They can release the trigger
+            pawn.weapon.OnPrimaryAttackEnd.Invoke();
+        }
     }
+
+    private bool HasTarget()
+    {
+        if (targetTransform != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void TargetPlayer()
+    {
+        Controller playerController = FindObjectOfType<Player_Controller>();
+        if (playerController != null)
+        {
+            if (playerController.pawn != null)
+            {
+                targetTransform = playerController.pawn.transform;
+            }
+        }
+    }
+
+
+
 }
