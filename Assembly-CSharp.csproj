@@ -58,24 +58,66 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameAction_DropPickup.cs" />
     <Compile Include="Assets\Scripts\Pickup_Weapon.cs" />
     <Compile Include="Assets\Scripts\Death_Destroy.cs" />
     <Compile Include="Assets\Scripts\Parent Class\GameAction.cs" />
     <Compile Include="Assets\Scripts\WeaponAction_ProjectileShooter.cs" />
     <Compile Include="Assets\Scripts\Parent Class\Controller.cs" />
     <Compile Include="Assets\Scripts\Parent Class\Pawn.cs" />
+    <Compile Include="Assets\Fx Explosion Pack\Script\csMouseOrbit.cs" />
     <Compile Include="Assets\Scripts\Camera_Controller.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Minefield Script.cs" />
     <Compile Include="Assets\Scripts\Parent Class\PickUp.cs" />
     <Compile Include="Assets\Scripts\LazerBeam.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPressStart.cs" />
     <Compile Include="Assets\Scripts\Parent Class\Health.cs" />
+    <Compile Include="Assets\Scripts\UI\QuitGame.cs" />
+    <Compile Include="Assets\Fx Explosion Pack\Script\DestroyEffect.cs" />
+    <Compile Include="Assets\Imports\PickUpController.cs" />
     <Compile Include="Assets\Scripts\Player_Controller.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UILoadCredits.cs" />
+    <Compile Include="Assets\Scripts\UI\UIHealthBar.cs" />
     <Compile Include="Assets\Scripts\AI_Controller.cs" />
+    <Compile Include="Assets\Scripts\UI\UIWeaponDisplay.cs" />
+    <Compile Include="Assets\Scripts\WeightedRandom.cs" />
+    <Compile Include="Assets\Scripts\UI\UIStartGame.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\Fx Explosion Pack\Script\csLightControl.cs" />
+    <Compile Include="Assets\Scripts\UI\UILivesDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\EnemyHealthDisplay.cs" />
     <Compile Include="Assets\Scripts\Humanoid_Pawn.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPauseMenu.cs" />
     <Compile Include="Assets\Scripts\camcontrol.cs" />
+    <Compile Include="Assets\Scripts\SpawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Death_RagdollAndDestroy.cs" />
     <Compile Include="Assets\Scripts\WeaponAction.cs" />
     <Compile Include="Assets\Scripts\WeaponAction_Raygun.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
